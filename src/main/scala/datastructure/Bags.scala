@@ -2,6 +2,8 @@ package datastructure
 
 import model.{Item, Node}
 
+import scala.util.Try
+
 class Bags(item: Item) extends Iterable[Item] {
   var first: Node[Item] = Node[Item](item, null)
 
@@ -21,13 +23,13 @@ class Bags(item: Item) extends Iterable[Item] {
   override def size(): Int = {
     @scala.annotation.tailrec
     def counter(node: Node[Item], count: Int): Int = {
-      Option(node.next) match {
+      Try(node.next).toOption match {
         case Some(v) => counter(v, count + 1)
         case None => count
       }
     }
 
-    Option(first) match {
+    Try(first).toOption match {
       case Some(v) => counter(v.next, 1)
       case None => 0
     }
