@@ -25,6 +25,7 @@ version := "1.0"
 // You can define other libraries as dependencies in your build like this:
 libraryDependencies += "org.typelevel" %% "cats-core" % "2.0.0"
 libraryDependencies += "org.scalacheck" %% "scalacheck" % "1.14.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.1.0" % Test
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
 // we're adding the cats dependency to the set of dependencies that sbt will go
 // and fetch when it starts up.
