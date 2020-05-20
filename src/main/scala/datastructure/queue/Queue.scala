@@ -3,7 +3,7 @@ package datastructure.queue
 import scala.reflect.{ClassManifest, ClassTag}
 
 class Queue[A: ClassTag](capacity: Int) {
-  var array = new Array[A](0)
+  private var array = new Array[A](0)
 
   def insert(x: A): Unit = {
     array.length match {
