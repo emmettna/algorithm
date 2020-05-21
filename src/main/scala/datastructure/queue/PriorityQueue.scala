@@ -7,16 +7,28 @@ class PriorityQueue[A]() extends QueueInterface[Weighted[A]] {
 
   override def enqueue(elem: Weighted[A]): Unit = {
     array = {
-    // TODO handle empty head case
+
       @scala.annotation.tailrec
-      def compareWithHead(array: Array[Weighted[A]]): Array[Weighted[A]] =
-      array.head compareTo elem match {
-        case 1 =>  array.reverse.appended(elem)
-        case 0 => array.reverse.appended(elem)
-        case -1 => compareWithHead(array.tail)
+      def compareWithHead(heads: Array[Weighted[A]], tails: Array[Weighted[A]]): Array[Weighted[A]] = {
+        tails.headOption match {
+          case Some(v) =>
+            v compareTo elem match {
+              case -1 => compareWithHead(heads.appended(tails.head), tails.tail)
+              case _ => tails.reverse.appended(elem)
+            }
+          case None => heads.head compareTo elem match {
+            case -1 => heads.appended(elem)
+            case _ => heads.appended(elem).reverse
+          }
+        }
       }
-      compareWithHead(array.reverse)
-    }.reverse
+
+      array.length match {
+        case 0 => array.appended(elem)
+        case 1 => compareWithHead(Array.empty, array.reverse).reverse
+        case _ => compareWithHead(Array.empty, array.reverse).reverse
+      }
+    }
   }
 
   override def peek(): Weighted[A] = array.head

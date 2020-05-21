@@ -13,8 +13,11 @@ class PriorityQueueTest extends FunSuite{
     val dad = Weighted[String]("Dad", 10)
 
     queue.enqueue(son)
+    println("inqueed son")
     queue.enqueue(aunt)
+    println("inqueed aunt")
     queue.enqueue(dad)
+    println("inqueed dad")
 
     queue.dequeue() shouldBe dad
 
