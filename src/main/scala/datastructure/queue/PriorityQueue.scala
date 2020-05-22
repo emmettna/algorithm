@@ -25,7 +25,6 @@ class PriorityQueue[A]() extends QueueInterface[Weighted[A]] {
 
       array.length match {
         case 0 => array.appended(elem)
-        case 1 => compareWithHead(Array.empty, array.reverse).reverse
         case _ => compareWithHead(Array.empty, array.reverse).reverse
       }
     }
