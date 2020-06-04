@@ -26,4 +26,6 @@ trait LinkedListInterface[A] {
   def contains(item: A): Boolean
 
   def indexOf(item: A): Int
+
+  def size(): Int
 }
